@@ -48,35 +48,35 @@ export default function AllotmentTable({ initialData, onDataChange }: { initialD
     return (
         <div className="w-full overflow-x-auto pb-20">
             <table className="w-full text-sm text-left border-collapse min-w-[1500px]">
-                <thead className="bg-gray-100 text-gray-900 font-bold sticky top-0 z-0 shadow-sm">
+                <thead className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold sticky top-0 z-10 shadow-md">
                     <tr>
-                        <th className="p-3 border-y border-gray-200 w-12 text-center">#</th>
-                        <th className="p-3 border-y border-gray-200">Cohort</th>
-                        <th className="p-3 border-y border-gray-200">Class</th>
-                        <th className="p-3 border-y border-gray-200">Subject</th>
-                        <th className="p-3 border-y border-gray-200">Module No.</th>
-                        <th className="p-3 border-y border-gray-200">Chapter Number</th>
-                        <th className="p-3 border-y border-gray-200 max-w-[150px]">Chapter Name</th>
-                        <th className="p-3 border-y border-gray-200">Exercise Name</th>
-                        <th className="p-3 border-y border-gray-200 text-center">Q. No.</th>
-                        <th className="p-3 border-y border-gray-200 text-center">QBG ID Links</th>
-                        <th className="p-3 border-y border-gray-200 text-center">Text Solution Available?</th>
-                        <th className="p-3 border-y border-gray-200 text-center">PPT Link</th>
-                        <th className="p-3 border-y border-gray-200 text-center">Video Folder Link</th>
+                        <th className="p-3 border-y border-blue-500 w-16 text-center">#</th>
+                        <th className="p-3 border-y border-blue-500 w-24">Cohort</th>
+                        <th className="p-3 border-y border-blue-500 w-20">Class</th>
+                        <th className="p-3 border-y border-blue-500 w-24">Subject</th>
+                        <th className="p-3 border-y border-blue-500 w-24 text-center">Module</th>
+                        <th className="p-3 border-y border-blue-500 w-24 text-center">Ch. No.</th>
+                        <th className="p-3 border-y border-blue-500 min-w-[180px]">Chapter Name</th>
+                        <th className="p-3 border-y border-blue-500 min-w-[150px]">Exercise</th>
+                        <th className="p-3 border-y border-blue-500 w-20 text-center">Q. No.</th>
+                        <th className="p-3 border-y border-blue-500 w-24 text-center">QBG</th>
+                        <th className="p-3 border-y border-blue-500 w-28 text-center">Text Sol.</th>
+                        <th className="p-3 border-y border-blue-500 w-20 text-center">PPT</th>
+                        <th className="p-3 border-y border-blue-500 w-24 text-center">Folder</th>
 
                         {/* Editable Area */}
-                        <th className="p-3 border-y border-gray-200 bg-blue-50/50 min-w-[250px]">Video Link</th>
-                        <th className="p-3 border-y border-gray-200 bg-blue-50/50 min-w-[200px]">Question Error Identified</th>
-                        <th className="p-3 border-y border-gray-200">VS Link Addition Date</th>
-                        <th className="p-3 border-y border-gray-200">VS Allotment Date</th>
-                        <th className="p-3 border-y border-gray-200">Status</th>
-                        <th className="p-3 border-y border-gray-200 text-center">Submit</th>
+                        <th className="p-3 border-y border-blue-400 bg-blue-800/30 min-w-[280px]">📹 Video Link</th>
+                        <th className="p-3 border-y border-blue-400 bg-blue-800/30 min-w-[220px]">⚠️ Error Identified</th>
+                        <th className="p-3 border-y border-blue-500 w-32">Link Date</th>
+                        <th className="p-3 border-y border-blue-500 w-32">Allot. Date</th>
+                        <th className="p-3 border-y border-blue-500 w-28">Status</th>
+                        <th className="p-3 border-y border-blue-500 w-24 text-center">Submit</th>
                     </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100 bg-white">
-                    {initialData.map((row) => (
+                <tbody className="divide-y divide-gray-200">
+                    {initialData.map((row, index) => (
 
-                        <Row key={row._id} row={row} onSave={handleUpdate} saving={loadingIds.has(row._id as string)} />
+                        <Row key={row._id} row={row} index={index} onSave={handleUpdate} saving={loadingIds.has(row._id as string)} />
                     ))}
                     {initialData.length === 0 && (
                         <tr>
@@ -91,7 +91,7 @@ export default function AllotmentTable({ initialData, onDataChange }: { initialD
     );
 }
 
-function Row({ row, onSave, saving }: { row: IAllotment, onSave: (r: IAllotment, u: Partial<IAllotment>) => void, saving: boolean }) {
+function Row({ row, index, onSave, saving }: { row: IAllotment, index: number, onSave: (r: IAllotment, u: Partial<IAllotment>) => void, saving: boolean }) {
     const [videoLink, setVideoLink] = useState(row.videoLink || '');
     const [error, setError] = useState(row.questionErrorIdentified || '');
 
@@ -109,7 +109,7 @@ function Row({ row, onSave, saving }: { row: IAllotment, onSave: (r: IAllotment,
     const linkStyle = "text-blue-600 hover:text-blue-800 underline truncate max-w-[100px] block";
 
     return (
-        <tr className="hover:bg-gray-50 group transition-colors text-gray-900 border-b border-gray-100">
+        <tr className={`hover:bg-blue-50 group transition-colors text-gray-900 border-b border-gray-200 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
             <td className="p-3 text-center text-gray-500 font-mono text-xs">{row.sheetRowId}</td>
             <td className="p-3 font-medium">{row.cohort}</td>
             <td className="p-3">{row.class}</td>

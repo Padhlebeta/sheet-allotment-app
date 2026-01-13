@@ -91,6 +91,25 @@ export default function Dashboard() {
                     <AllotmentTable initialData={data} onDataChange={fetchData} />
                 )}
             </main>
+
+            {/* Footer */}
+            <footer className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 px-6 border-t border-blue-500 shadow-lg">
+                <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+                    <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">⚡ Powered by</span>
+                        <span className="font-bold text-lg">NEET ARD Team</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                        <span>📧</span>
+                        <a
+                            href="mailto:academics.innovation@pw.live"
+                            className="hover:text-blue-200 font-medium underline decoration-dotted"
+                        >
+                            academics.innovation@pw.live
+                        </a>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 }
