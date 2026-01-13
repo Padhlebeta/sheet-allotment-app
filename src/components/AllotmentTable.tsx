@@ -46,31 +46,31 @@ export default function AllotmentTable({ initialData, onDataChange }: { initialD
     // For simplicity, we can use uncontrolled inputs or local state per row.
 
     return (
-        <div className="w-full overflow-x-auto pb-20">
-            <table className="w-full text-sm text-left border-collapse min-w-[1500px]">
-                <thead className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold sticky top-0 z-10 shadow-md">
+        <div className="w-full overflow-x-auto pb-4">
+            <table className="w-full text-xs border-collapse table-fixed">
+                <thead className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold sticky top-0 z-10 shadow-md">
                     <tr>
-                        <th className="p-3 border-y border-blue-500 w-16 text-center">#</th>
-                        <th className="p-3 border-y border-blue-500 w-24">Cohort</th>
-                        <th className="p-3 border-y border-blue-500 w-20">Class</th>
-                        <th className="p-3 border-y border-blue-500 w-24">Subject</th>
-                        <th className="p-3 border-y border-blue-500 w-24 text-center">Module</th>
-                        <th className="p-3 border-y border-blue-500 w-24 text-center">Ch. No.</th>
-                        <th className="p-3 border-y border-blue-500 min-w-[180px]">Chapter Name</th>
-                        <th className="p-3 border-y border-blue-500 min-w-[150px]">Exercise</th>
-                        <th className="p-3 border-y border-blue-500 w-20 text-center">Q. No.</th>
-                        <th className="p-3 border-y border-blue-500 w-24 text-center">QBG</th>
-                        <th className="p-3 border-y border-blue-500 w-28 text-center">Text Sol.</th>
-                        <th className="p-3 border-y border-blue-500 w-20 text-center">PPT</th>
-                        <th className="p-3 border-y border-blue-500 w-24 text-center">Folder</th>
+                        <th className="p-2 border-y border-blue-500 w-12 text-center text-[10px]">#</th>
+                        <th className="p-2 border-y border-blue-500 w-16">Cohort</th>
+                        <th className="p-2 border-y border-blue-500 w-12">Class</th>
+                        <th className="p-2 border-y border-blue-500 w-16">Subject</th>
+                        <th className="p-2 border-y border-blue-500 w-14 text-center">Mod</th>
+                        <th className="p-2 border-y border-blue-500 w-12 text-center">Ch</th>
+                        <th className="p-2 border-y border-blue-500 w-32">Chapter</th>
+                        <th className="p-2 border-y border-blue-500 w-28">Exercise</th>
+                        <th className="p-2 border-y border-blue-500 w-12 text-center">Q#</th>
+                        <th className="p-2 border-y border-blue-500 w-16 text-center">QBG</th>
+                        <th className="p-2 border-y border-blue-500 w-14 text-center">Sol</th>
+                        <th className="p-2 border-y border-blue-500 w-14 text-center">PPT</th>
+                        <th className="p-2 border-y border-blue-500 w-16 text-center">Folder</th>
 
                         {/* Editable Area */}
-                        <th className="p-3 border-y border-blue-400 bg-blue-800/30 min-w-[280px]">📹 Video Link</th>
-                        <th className="p-3 border-y border-blue-400 bg-blue-800/30 min-w-[220px]">⚠️ Error Identified</th>
-                        <th className="p-3 border-y border-blue-500 w-32">Link Date</th>
-                        <th className="p-3 border-y border-blue-500 w-32">Allot. Date</th>
-                        <th className="p-3 border-y border-blue-500 w-28">Status</th>
-                        <th className="p-3 border-y border-blue-500 w-24 text-center">Submit</th>
+                        <th className="p-2 border-y border-blue-400 bg-blue-800/30 w-48">📹 Video</th>
+                        <th className="p-2 border-y border-blue-400 bg-blue-800/30 w-36">⚠️ Error</th>
+                        <th className="p-2 border-y border-blue-500 w-20 text-[10px]">Added</th>
+                        <th className="p-2 border-y border-blue-500 w-20 text-[10px]">Allotted</th>
+                        <th className="p-2 border-y border-blue-500 w-20">Status</th>
+                        <th className="p-2 border-y border-blue-500 w-16 text-center">Save</th>
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
@@ -106,60 +106,58 @@ function Row({ row, index, onSave, saving }: { row: IAllotment, index: number, o
         });
     };
 
-    const linkStyle = "text-blue-600 hover:text-blue-800 underline truncate max-w-[100px] block";
-
     return (
         <tr className={`hover:bg-blue-50 group transition-colors text-gray-900 border-b border-gray-200 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
-            <td className="p-3 text-center text-gray-500 font-mono text-xs">{row.sheetRowId}</td>
-            <td className="p-3 font-medium">{row.cohort}</td>
-            <td className="p-3">{row.class}</td>
-            <td className="p-3">{row.subject}</td>
-            <td className="p-3 text-center">{row.moduleNo}</td>
-            <td className="p-3 text-center">{row.chapterNumber}</td>
-            <td className="p-3 truncate max-w-[150px]" title={row.chapterName}>{row.chapterName}</td>
-            <td className="p-3 truncate max-w-[150px]" title={row.exerciseName}>{row.exerciseName}</td>
-            <td className="p-3 text-center font-semibold">{row.qNo}</td>
-            <td className="p-3 text-center">
-                {row.qbgIdLinks && <a href={row.qbgIdLinks} target="_blank" className={linkStyle}>View QBG</a>}
+            <td className="p-1.5 text-center text-gray-500 font-mono text-[10px]">{row.sheetRowId}</td>
+            <td className="p-1.5 font-medium truncate" title={row.cohort}>{row.cohort}</td>
+            <td className="p-1.5 truncate" title={row.class}>{row.class}</td>
+            <td className="p-1.5 truncate" title={row.subject}>{row.subject}</td>
+            <td className="p-1.5 text-center">{row.moduleNo}</td>
+            <td className="p-1.5 text-center">{row.chapterNumber}</td>
+            <td className="p-1.5 truncate" title={row.chapterName}>{row.chapterName}</td>
+            <td className="p-1.5 truncate" title={row.exerciseName}>{row.exerciseName}</td>
+            <td className="p-1.5 text-center font-semibold">{row.qNo}</td>
+            <td className="p-1.5 text-center">
+                {row.qbgIdLinks && <a href={row.qbgIdLinks} target="_blank" className="text-blue-600 hover:underline text-[10px]">View</a>}
             </td>
-            <td className="p-3 text-center">{row.textSolutionAvailable}</td>
-            <td className="p-3 text-center">
-                {row.pptLink && <a href={row.pptLink} target="_blank" className={linkStyle}>PPT</a>}
+            <td className="p-1.5 text-center text-[10px]">{row.textSolutionAvailable}</td>
+            <td className="p-1.5 text-center">
+                {row.pptLink && <a href={row.pptLink} target="_blank" className="text-blue-600 hover:underline text-[10px]">PPT</a>}
             </td>
-            <td className="p-3 text-center">
-                {row.videoFolderLink && <a href={row.videoFolderLink} target="_blank" className={linkStyle}>Folder</a>}
+            <td className="p-1.5 text-center">
+                {row.videoFolderLink && <a href={row.videoFolderLink} target="_blank" className="text-blue-600 hover:underline text-[10px]">Folder</a>}
             </td>
 
             {/* Editable Inputs */}
-            <td className="p-2 bg-blue-50/30">
+            <td className="p-1 bg-blue-50/30">
                 <div className="flex items-center gap-1">
                     <input
                         type="text"
                         value={videoLink}
                         onChange={(e) => setVideoLink(e.target.value)}
                         placeholder="Paste Link"
-                        className="w-full px-2 py-2 border border-gray-300 rounded text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-xs"
+                        className="w-full px-1.5 py-1 border border-gray-300 rounded text-gray-900 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-[11px]"
                     />
                     {videoLink && (
                         <a
                             href={videoLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1.5 text-blue-600 hover:bg-blue-100 rounded-md transition-colors"
+                            className="p-1 text-blue-600 hover:bg-blue-100 rounded transition-colors"
                             title="Open Video Link"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                             </svg>
                         </a>
                     )}
                 </div>
             </td>
-            <td className="p-2 bg-blue-50/30">
+            <td className="p-1 bg-blue-50/30">
                 <select
                     value={error}
                     onChange={(e) => setError(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none text-sm bg-white"
+                    className="w-full px-1.5 py-1 border border-gray-300 rounded text-gray-900 focus:ring-1 focus:ring-blue-500 outline-none text-[11px] bg-white"
                     aria-label="Select Question Error"
                 >
                     <option value="">-- Select --</option>
@@ -167,21 +165,21 @@ function Row({ row, index, onSave, saving }: { row: IAllotment, index: number, o
                 </select>
             </td>
 
-            <td className="p-3 text-gray-600 text-xs">{row.vsLinkAdditionDate}</td>
-            <td className="p-3 text-gray-600 text-xs">{row.vsAllotmentDate}</td>
-            <td className="p-3">
-                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${row.status === 'Submitted'
+            <td className="p-1.5 text-gray-600 text-[10px] truncate" title={row.vsLinkAdditionDate}>{row.vsLinkAdditionDate}</td>
+            <td className="p-1.5 text-gray-600 text-[10px] truncate" title={row.vsAllotmentDate}>{row.vsAllotmentDate}</td>
+            <td className="p-1.5">
+                <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-bold ${row.status === 'Submitted'
                     ? 'bg-green-100 text-green-800'
                     : 'bg-yellow-100 text-yellow-800'
                     }`}>
                     {row.status || 'Pending'}
                 </span>
             </td>
-            <td className="p-2 text-center">
+            <td className="p-1 text-center">
                 <button
                     onClick={handleSave}
                     disabled={!isDirty || saving}
-                    className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDirty
+                    className={`inline-flex items-center px-2 py-1 border border-transparent text-[11px] font-medium rounded shadow-sm text-white focus:outline-none focus:ring-1 focus:ring-offset-1 ${isDirty
                         ? 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
                         : 'bg-gray-300 cursor-not-allowed'
                         } ${saving ? 'opacity-75 cursor-wait' : ''}`}
