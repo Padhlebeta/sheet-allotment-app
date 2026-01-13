@@ -121,7 +121,7 @@ export async function POST(req: Request) {
             }
         } catch (wbError: unknown) {
             console.error('⚠️ Write-back Failed:', wbError);
-            fs.appendFileSync('write-back-log.txt', `Wrapper Error: ${(wbError as Error).message}\n`);
+            // Logging to console for Vercel compatibility
         }
 
         return NextResponse.json({ message: 'Updated successfully', data: allotment });
