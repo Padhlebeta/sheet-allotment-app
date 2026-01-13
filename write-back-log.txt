@@ -1,0 +1,42 @@
+2026-01-13T17:30:59.540Z - Starting Write-Back for Row ID: 3
+2026-01-13T17:30:59.545Z - Sheet Title: "undefined"
+2026-01-13T17:30:59.546Z - Video Col Index: undefined
+2026-01-13T17:30:59.546Z - Error Col Index: undefined
+2026-01-13T17:30:59.547Z - Video Value: "https://drive.google.com/drive/folders/1NIaIdRO2s9EDyosLqr4MjMhnVHPp4A95"
+2026-01-13T17:30:59.548Z - Error Value: "Wrong Solution"
+2026-01-13T17:30:59.549Z - ❌ Missing Sheet Title or Row ID
+2026-01-13T17:35:18.290Z - Starting Write-Back for Row ID: 3
+2026-01-13T17:35:18.291Z - Sheet Title: "undefined"
+2026-01-13T17:35:18.292Z - Video Col Index: undefined
+2026-01-13T17:35:18.334Z - Error Col Index: undefined
+2026-01-13T17:35:18.336Z - Video Value: "https://drive.google.com/drive/folders/1NIaIdRO2s9EDyosLqr4MjMhnVHPp4A95"
+2026-01-13T17:35:18.337Z - Error Value: "Wrong Solution"
+2026-01-13T17:35:18.338Z - ❌ Missing Sheet Title or Row ID
+2026-01-13T17:43:50.183Z - Starting Write-Back for Row ID: 3
+2026-01-13T17:43:50.183Z - Sheet Title: "undefined"
+2026-01-13T17:43:50.184Z - Video Col Index: undefined
+2026-01-13T17:43:50.185Z - Error Col Index: undefined
+2026-01-13T17:43:50.185Z - Video Value: "https://drive.google.com/drive/folders/1NIaIdRO2s9EDyosLqr4MjMhnVHPp4A95"
+2026-01-13T17:43:50.186Z - Error Value: "Wrong Solution"
+2026-01-13T17:43:50.186Z - ❌ Missing Sheet Title or Row ID
+2026-01-13T17:47:31.211Z - Starting Write-Back for Row ID: 3
+2026-01-13T17:47:31.212Z - Sheet Title: "NEET Modules"
+2026-01-13T17:47:31.214Z - Video Col Index: 15
+2026-01-13T17:47:31.215Z - Error Col Index: 17
+2026-01-13T17:47:31.215Z - Video Value: "https://drive.google.com/drive/folders/1NIaIdRO2s9EDyosLqr4MjMhnVHPp4A95"
+2026-01-13T17:47:31.220Z - Error Value: "Wrong Solution"
+2026-01-13T17:47:31.339Z - Prepare Update Video: Range='NEET Modules'!P3, Val=https://drive.google.com/drive/folders/1NIaIdRO2s9EDyosLqr4MjMhnVHPp4A95
+2026-01-13T17:47:31.339Z - Prepare Update Error: Range='NEET Modules'!R3, Val=Wrong Solution
+2026-01-13T17:47:31.340Z - Sending batchUpdate with 2 items...
+2026-01-13T17:47:32.530Z - ✅ Success! Response: {"spreadsheetId":"1PSvIz_6VUIMf8Vl8LlXfaPkThFFwHZu969GTcwuf-DY","totalUpdatedRows":1,"totalUpdatedColumns":2,"totalUpdatedCells":2,"totalUpdatedSheets":1,"responses":[{"spreadsheetId":"1PSvIz_6VUIMf8Vl8LlXfaPkThFFwHZu969GTcwuf-DY","updatedRange":"'NEET Modules'!P3","updatedRows":1,"updatedColumns":1,"updatedCells":1},{"spreadsheetId":"1PSvIz_6VUIMf8Vl8LlXfaPkThFFwHZu969GTcwuf-DY","updatedRange":"'NEET Modules'!R3","updatedRows":1,"updatedColumns":1,"updatedCells":1}]}
+2026-01-13T17:58:01.732Z - Starting Write-Back for Row ID: 4
+2026-01-13T17:58:01.733Z - Sheet Title: "NEET Modules"
+2026-01-13T17:58:01.735Z - Video Col Index: 15
+2026-01-13T17:58:01.736Z - Error Col Index: 17
+2026-01-13T17:58:01.736Z - Video Value: "https://drive.google.com/drive/folders/1NIaIdRO2s9EDyosLqr4MjMhnVHPp4A95"
+2026-01-13T17:58:01.737Z - Error Value: ""
+2026-01-13T17:58:03.288Z - Prepare Update Video: Range='NEET Modules'!P4, Val=https://drive.google.com/drive/folders/1NIaIdRO2s9EDyosLqr4MjMhnVHPp4A95
+2026-01-13T17:58:03.436Z - Prepare Update Link Date: Range='NEET Modules'!S4, Val=1/13/2026
+2026-01-13T17:58:03.438Z - Prepare Update Error: Range='NEET Modules'!R4, Val=
+2026-01-13T17:58:03.438Z - Sending batchUpdate with 3 items...
+2026-01-13T17:58:05.252Z - ✅ Success! Response: {"spreadsheetId":"1PSvIz_6VUIMf8Vl8LlXfaPkThFFwHZu969GTcwuf-DY","totalUpdatedRows":1,"totalUpdatedColumns":3,"totalUpdatedCells":3,"totalUpdatedSheets":1,"responses":[{"spreadsheetId":"1PSvIz_6VUIMf8Vl8LlXfaPkThFFwHZu969GTcwuf-DY","updatedRange":"'NEET Modules'!P4","updatedRows":1,"updatedColumns":1,"updatedCells":1},{"spreadsheetId":"1PSvIz_6VUIMf8Vl8LlXfaPkThFFwHZu969GTcwuf-DY","updatedRange":"'NEET Modules'!S4","updatedRows":1,"updatedColumns":1,"updatedCells":1},{"spreadsheetId":"1PSvIz_6VUIMf8Vl8LlXfaPkThFFwHZu969GTcwuf-DY","updatedRange":"'NEET Modules'!R4","updatedRows":1,"updatedColumns":1,"updatedCells":1}]}
