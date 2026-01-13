@@ -3,7 +3,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import connectToDatabase from '@/lib/db';
 import Allotment from '@/models/Allotment';
-import fs from 'fs';
 
 export async function POST(req: Request) {
     try {
@@ -40,8 +39,7 @@ export async function POST(req: Request) {
 
         // --- WRITE-BACK TO GOOGLE SHEET ---
         try {
-            const logFile = 'write-back-log.txt';
-            const log = (msg: string) => fs.appendFileSync(logFile, `${new Date().toISOString()} - ${msg}\n`, 'utf8');
+            const log = (msg: string) => console.log(`[Update-Allotment] ${msg}`);
 
             log(`Starting Write-Back for Row ID: ${allotment.sheetRowId}`);
             log(`Sheet Title: "${allotment.sheetTitle}"`);
