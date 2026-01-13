@@ -1,7 +1,5 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import connectToDatabase from "@/lib/db";
-import Allotment from "@/models/Allotment";
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -18,7 +16,7 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        async signIn({ user }) {
+        async signIn() {
             // Allow login, we will filter data in the dashboard based on email
             // Optional: Strict mode - Only allow if email exists in DB
             /*

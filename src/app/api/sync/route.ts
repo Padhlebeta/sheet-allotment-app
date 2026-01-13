@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import fs from 'fs';
 import { getGoogleSheets } from '@/lib/googleSheets';
 import connectToDatabase from '@/lib/db';
 import Allotment from '@/models/Allotment';
@@ -139,7 +140,8 @@ export async function POST() {
 
         // LOGGING START
         try {
-            const fs = require('fs');
+            // const fs = require('fs'); // Removed inline require
+
             let logMsg = `\n--- SYNC START ${new Date().toISOString()} ---\n`;
             logMsg += `Target Sheet: "${targetSheetTitle}" (Row ${headerRowIndex + 1})\n`;
             logMsg += `Headers Found: ${JSON.stringify(headers)}\n`;
@@ -222,8 +224,8 @@ export async function POST() {
             mapping: map
         });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Sync Error:', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ error: (error as Error).message }, { status: 500 });
     }
 }

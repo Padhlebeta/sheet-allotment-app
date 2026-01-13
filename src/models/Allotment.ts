@@ -1,6 +1,7 @@
-import mongoose, { Schema, model, models } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
 export interface IAllotment {
+    _id?: string;
     sheetRowId: number; // To map back to Google Sheet
     cohort: string;
     class: string;
@@ -32,6 +33,7 @@ export interface IAllotment {
     sheetTitle?: string;
     videoLinkCol?: number;
     errorCol?: number;
+    linkDateCol?: number;
 }
 
 const AllotmentSchema = new Schema<IAllotment>({

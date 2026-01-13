@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]/route';
 import connectToDatabase from '@/lib/db';
 import Allotment from '@/models/Allotment';
+import fs from 'fs';
 
 export async function POST(req: Request) {
     try {
@@ -39,7 +40,6 @@ export async function POST(req: Request) {
 
         // --- WRITE-BACK TO GOOGLE SHEET ---
         try {
-            const fs = require('fs');
             const logFile = 'write-back-log.txt';
             const log = (msg: string) => fs.appendFileSync(logFile, `${new Date().toISOString()} - ${msg}\n`, 'utf8');
 
@@ -111,8 +111,8 @@ export async function POST(req: Request) {
                         });
                         log(`✅ Success! Response: ${JSON.stringify(res.data)}`);
                         console.log(`✅ Write-back successful for Row ${allotment.sheetRowId}`);
-                    } catch (apiErr: any) {
-                        log(`❌ API Error: ${apiErr.message}`);
+                    } catch (apiErr: unknown) {
+                        log(`❌ API Error: ${(apiErr as Error).message}`);
                         console.error('API Error', apiErr);
                     }
                 } else {
@@ -121,16 +121,15 @@ export async function POST(req: Request) {
             } else {
                 log('❌ Missing Sheet Title or Row ID');
             }
-        } catch (wbError: any) {
+        } catch (wbError: unknown) {
             console.error('⚠️ Write-back Failed:', wbError);
-            const fs = require('fs');
-            fs.appendFileSync('write-back-log.txt', `Wrapper Error: ${wbError.message}\n`);
+            fs.appendFileSync('write-back-log.txt', `Wrapper Error: ${(wbError as Error).message}\n`);
         }
 
         return NextResponse.json({ message: 'Updated successfully', data: allotment });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Update Error:', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ error: (error as Error).message }, { status: 500 });
     }
 }

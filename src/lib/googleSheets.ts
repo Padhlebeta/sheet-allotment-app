@@ -18,11 +18,13 @@ export const getGoogleSheets = async () => {
         });
 
         const client = await auth.getClient();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return google.sheets({ version: 'v4', auth: client as any });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Google Auth Setup Error:', error);
-        if (error.response) {
-            console.error('API Error Details:', JSON.stringify(error.response.data, null, 2));
+        const err = error as { response?: { data: unknown } };
+        if (err.response) {
+            console.error('API Error Details:', JSON.stringify(err.response.data, null, 2));
         }
         throw error;
     }

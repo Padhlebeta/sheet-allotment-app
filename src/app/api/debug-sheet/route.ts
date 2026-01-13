@@ -15,8 +15,8 @@ export async function GET() {
             headers: response.data.values ? response.data.values[0] : [],
             indices: response.data.values ? response.data.values[0].map((h, i) => `${i}: ${h}`) : []
         });
-    } catch (error: any) {
-        console.error('Debug Sheet Error:', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (error: unknown) {
+        console.error('Debug API Error:', error);
+        return NextResponse.json({ error: (error as Error).message }, { status: 500 });
     }
 }

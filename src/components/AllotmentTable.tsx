@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { ExternalLink, CheckCircle, AlertCircle, Save } from 'lucide-react';
+// import { Save } from 'lucide-react'; // Removed unused
+import { IAllotment } from '@/models/Allotment';
 
 const ERROR_OPTIONS = [
     'Wrong Solution',
@@ -10,15 +11,16 @@ const ERROR_OPTIONS = [
     'Other Issues'
 ];
 
-export default function AllotmentTable({ initialData, onDataChange }: { initialData: any[], onDataChange: () => void }) {
+export default function AllotmentTable({ initialData, onDataChange }: { initialData: IAllotment[], onDataChange: () => void }) {
     const [loadingIds, setLoadingIds] = useState<Set<string>>(new Set());
 
-    const handleUpdate = async (row: any, updates: any) => {
-        setLoadingIds(prev => new Set(prev).add(row._id));
+    const handleUpdate = async (row: IAllotment, updates: Partial<IAllotment>) => {
+
+        setLoadingIds(prev => new Set(prev).add(row._id as string));
         try {
             const res = await fetch('/api/update-allotment', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+
                 body: JSON.stringify({ id: row._id, ...updates })
             });
 
@@ -26,12 +28,13 @@ export default function AllotmentTable({ initialData, onDataChange }: { initialD
 
             // Ideally update local state optimistically, but for now we reload or just show success
             onDataChange();
-        } catch (e) {
+        } catch {
             alert('Failed to save');
         } finally {
             setLoadingIds(prev => {
                 const next = new Set(prev);
-                next.delete(row._id);
+
+                next.delete(row._id as string);
                 return next;
             });
         }
@@ -72,7 +75,8 @@ export default function AllotmentTable({ initialData, onDataChange }: { initialD
                 </thead>
                 <tbody className="divide-y divide-gray-100 bg-white">
                     {initialData.map((row) => (
-                        <Row key={row._id} row={row} onSave={handleUpdate} saving={loadingIds.has(row._id)} />
+
+                        <Row key={row._id} row={row} onSave={handleUpdate} saving={loadingIds.has(row._id as string)} />
                     ))}
                     {initialData.length === 0 && (
                         <tr>
@@ -87,7 +91,7 @@ export default function AllotmentTable({ initialData, onDataChange }: { initialD
     );
 }
 
-function Row({ row, onSave, saving }: { row: any, onSave: (r: any, u: any) => void, saving: boolean }) {
+function Row({ row, onSave, saving }: { row: IAllotment, onSave: (r: IAllotment, u: Partial<IAllotment>) => void, saving: boolean }) {
     const [videoLink, setVideoLink] = useState(row.videoLink || '');
     const [error, setError] = useState(row.questionErrorIdentified || '');
 
@@ -156,6 +160,7 @@ function Row({ row, onSave, saving }: { row: any, onSave: (r: any, u: any) => vo
                     value={error}
                     onChange={(e) => setError(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none text-sm bg-white"
+                    aria-label="Select Question Error"
                 >
                     <option value="">-- Select --</option>
                     {ERROR_OPTIONS.map(opt => <option key={opt} value={opt}>{opt}</option>)}

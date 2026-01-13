@@ -43,8 +43,8 @@ export default function Dashboard() {
             await fetch('/api/sync', { method: 'POST' });
             await fetchData(); // Reload data after sync
             alert('Allotments synced from Sheet!');
-        } catch (e) {
-            alert('Sync failed!');
+        } catch {
+            alert('Failed to refresh data');
         } finally {
             setRefreshing(false);
         }
